@@ -31,10 +31,13 @@ Public Class EtchASketchForm
 
     'When the user presses down their mouse INSIDE the picture box
     Private Sub PBDrawing_MouseDown(sender As Object, e As MouseEventArgs) Handles PBDrawing.MouseDown
-        draw = True
-        'Sets initial mouse coordinates
-        mouX = e.X
-        mouY = e.Y
+        'Only if left click is pressed
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            draw = True
+            'Sets initial mouse coordinates
+            mouX = e.X
+            mouY = e.Y
+        End If
     End Sub
 
     'When the user moves their mouse and the mouse is pressed down INSIDE the picture box
@@ -58,19 +61,11 @@ Public Class EtchASketchForm
 
 
     'Exit Button
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
-    End Sub
-    'Exit Menu Button
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-    'Exit Context Menu Button
-    Private Sub ExitToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem1.Click
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem1.Click, ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
     'Sets the color of the drawn line, Color Button
-    Private Sub SelectColorButton_Click(sender As Object, e As EventArgs) Handles SelectColorButton.Click
+    Private Sub SelectColorButton_Click(sender As Object, e As EventArgs) Handles SelectColorButton.Click, SelectColorToolStripMenuItem1.Click, SelectColorToolStripMenuItem.Click
         'Opens a window dialog to be able to change the color as desired
         Dim myDialog As New ColorDialog()
         If (myDialog.ShowDialog() = Windows.Forms.DialogResult.OK) Then
@@ -78,25 +73,27 @@ Public Class EtchASketchForm
         End If
 
     End Sub
-    'Color Menu Button
-    Private Sub SelectColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectColorToolStripMenuItem.Click
-        SelectColorButton_Click(sender, e)
-    End Sub
-    'Color Context Menu Button
-    Private Sub SelectColorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SelectColorToolStripMenuItem1.Click
-        SelectColorButton_Click(sender, e)
-    End Sub
     'Clear Button
-    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, ClearToolStripMenuItem.Click, ClearToolStripMenuItem1.Click
         bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
         PBDrawing.Image = bmp
     End Sub
-    'Clear Menu Button
-    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
-        ClearButton_Click(sender, e)
+    'About Button
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click, AboutToolStripMenuItem.Click
+        MessageBox.Show("This program is a code based Etch-A-Sketch made by Joshua Makuch.
+The select color button allows you to change the color of the pen you're writing with.
+The clear button clears the Etch-A-Sketch.
+The select waveform button draws a sine, cosine, and cotangent figure and clears the Etch-A-Sketch.
+Finally, the exit button closes the program.", "About", MessageBoxButtons.OK)
     End Sub
-    'Clear Context Menu Button
-    Private Sub ClearToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem1.Click
-        ClearButton_Click(sender, e)
+    'Draw Waveform Button
+    Private Sub DrawWaveformButton_Click(sender As Object, e As EventArgs) Handles DrawWaveformButton.Click
+
     End Sub
+
+
+
+    'MAKE SURE TO BIND THE KEYS TO THEIR APPROPRIATE EFFECTS
+
+
 End Class
