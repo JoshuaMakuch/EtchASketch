@@ -26,24 +26,6 @@ Public Class EtchASketchForm
         bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
         PBDrawing.Image = bmp
     End Sub
-    'Exit Button
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
-    End Sub
-    'Exit Menu Button
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-    'Sets the color of the drawn line, Color Button
-    Private Sub SelectColorButton_Click(sender As Object, e As EventArgs) Handles SelectColorButton.Click
-        'Opens a window dialog to be able to change the color as desired
-        Dim myDialog As New ColorDialog()
-        If (myDialog.ShowDialog() = Windows.Forms.DialogResult.OK) Then
-            myPen.Color = myDialog.Color
-        End If
-
-    End Sub
-
 
     'THIS IS THE MAIN DRAWING CODE
 
@@ -73,4 +55,48 @@ Public Class EtchASketchForm
         draw = False
     End Sub
 
+
+
+    'Exit Button
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
+    'Exit Menu Button
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+    'Exit Context Menu Button
+    Private Sub ExitToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem1.Click
+        Me.Close()
+    End Sub
+    'Sets the color of the drawn line, Color Button
+    Private Sub SelectColorButton_Click(sender As Object, e As EventArgs) Handles SelectColorButton.Click
+        'Opens a window dialog to be able to change the color as desired
+        Dim myDialog As New ColorDialog()
+        If (myDialog.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+            myPen.Color = myDialog.Color
+        End If
+
+    End Sub
+    'Color Menu Button
+    Private Sub SelectColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectColorToolStripMenuItem.Click
+        SelectColorButton_Click(sender, e)
+    End Sub
+    'Color Context Menu Button
+    Private Sub SelectColorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SelectColorToolStripMenuItem1.Click
+        SelectColorButton_Click(sender, e)
+    End Sub
+    'Clear Button
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+        bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
+        PBDrawing.Image = bmp
+    End Sub
+    'Clear Menu Button
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        ClearButton_Click(sender, e)
+    End Sub
+    'Clear Context Menu Button
+    Private Sub ClearToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem1.Click
+        ClearButton_Click(sender, e)
+    End Sub
 End Class
