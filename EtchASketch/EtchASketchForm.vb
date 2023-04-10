@@ -11,6 +11,7 @@ Imports System.Drawing
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Window
 Imports Microsoft.VisualBasic.Devices
+Imports System.Math
 
 Public Class EtchASketchForm
     Dim draw As Boolean
@@ -87,8 +88,43 @@ The select waveform button draws a sine, cosine, and cotangent figure and clears
 Finally, the exit button closes the program.", "About", MessageBoxButtons.OK)
     End Sub
     'Draw Waveform Button
-    Private Sub DrawWaveformButton_Click(sender As Object, e As EventArgs) Handles DrawWaveformButton.Click
+    Private Sub DrawWaveformButton_Click(sender As Object, e As EventArgs) Handles DrawWaveformButton.Click, DrawWaveformToolStripMenuItem1.Click
+        'Stores the old pen color to return it to the original
+        Dim oldPenColor As Color = myPen.Color()
 
+        'Clears the current image
+        bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
+        PBDrawing.Image = bmp
+
+        Using g As Graphics = Graphics.FromImage(PBDrawing.Image)
+            'Creates Graticules
+            myPen.Color = Color.Black
+            For i As Integer = 1 To 9
+                g.DrawLine(myPen, CInt(PBDrawing.Width * i / 9), 0, CInt(PBDrawing.Width * i / 9), PBDrawing.Height)
+                g.DrawLine(myPen, 0, CInt(PBDrawing.Height * i / 9), PBDrawing.Width, CInt(PBDrawing.Height * i / 9))
+            Next
+
+            'Draws all waveforms
+            Dim hD2 As Double = PBDrawing.Height / 2
+            Dim wD As Double = PBDrawing.Width
+            For i As Integer = 1 To PBDrawing.Width
+                myPen.Color = Color.Red
+                g.DrawRectangle(myPen, i, CInt((hD2 * Cos(i * ((2 * Math.PI) / wD))) + hD2), 2, 2) 'Draws a cosine function
+                myPen.Color = Color.Blue
+                g.DrawRectangle(myPen, i, CInt((hD2 * Sin(i * ((2 * Math.PI) / wD))) + hD2), 2, 2) 'Draws a sine function
+                myPen.Color = Color.Green
+                'Because two points result in asymtotes they dont exist
+                Try
+                    g.DrawRectangle(myPen, i, CInt((hD2 * Tan(i * ((2 * Math.PI) / wD))) + hD2), 2, 2) 'Draws a tangent function
+                Catch ex As Exception
+
+                End Try
+            Next
+
+        End Using
+        'Refreshes the image and resets the pen color
+        PBDrawing.Refresh()
+        myPen.Color() = oldPenColor
     End Sub
 
 

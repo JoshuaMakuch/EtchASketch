@@ -68,7 +68,7 @@ Partial Class EtchASketchForm
         Me.ContextMenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem1, Me.EditToolStripMenuItem1, Me.HelpToolStripMenuItem})
         Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(211, 104)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(111, 76)
         '
         'FileToolStripMenuItem1
         '
@@ -112,13 +112,13 @@ Partial Class EtchASketchForm
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(110, 24)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(133, 26)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'MenuStrip2
@@ -179,7 +179,7 @@ Partial Class EtchASketchForm
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(133, 26)
         Me.ToolStripMenuItem1.Text = "About"
         '
         'SelectColorButton
