@@ -26,9 +26,10 @@ Public Class EtchASketchForm
         'Populate picture box image property
         bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
         PBDrawing.Image = bmp
+        DrawWaveformButton().Focus()
     End Sub
 
-    'THIS IS THE MAIN DRAWING CODE
+    'THIS IS THE MAIN DRAWING CODE||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
     'When the user presses down their mouse INSIDE the picture box
     Private Sub PBDrawing_MouseDown(sender As Object, e As MouseEventArgs) Handles PBDrawing.MouseDown
@@ -38,6 +39,8 @@ Public Class EtchASketchForm
             'Sets initial mouse coordinates
             mouX = e.X
             mouY = e.Y
+        ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
+            SelectColorButton_Click(sender, e)
         End If
     End Sub
 
@@ -59,11 +62,10 @@ Public Class EtchASketchForm
         draw = False
     End Sub
 
-
-
     'Exit Button
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem1.Click, ExitToolStripMenuItem.Click
         Me.Close()
+        DrawWaveformButton().Focus()
     End Sub
     'Sets the color of the drawn line, Color Button
     Private Sub SelectColorButton_Click(sender As Object, e As EventArgs) Handles SelectColorButton.Click, SelectColorToolStripMenuItem1.Click, SelectColorToolStripMenuItem.Click
@@ -72,12 +74,13 @@ Public Class EtchASketchForm
         If (myDialog.ShowDialog() = Windows.Forms.DialogResult.OK) Then
             myPen.Color = myDialog.Color
         End If
-
+        DrawWaveformButton().Focus()
     End Sub
     'Clear Button
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, ClearToolStripMenuItem.Click, ClearToolStripMenuItem1.Click
         bmp = New Bitmap(PBDrawing.Width, PBDrawing.Height) 'Sets the bitmap to be the size of the picture box
         PBDrawing.Image = bmp
+        DrawWaveformButton().Focus()
     End Sub
     'About Button
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click, AboutToolStripMenuItem.Click
@@ -126,10 +129,5 @@ Finally, the exit button closes the program.", "About", MessageBoxButtons.OK)
         PBDrawing.Refresh()
         myPen.Color() = oldPenColor
     End Sub
-
-
-
-    'MAKE SURE TO BIND THE KEYS TO THEIR APPROPRIATE EFFECTS
-
 
 End Class

@@ -210,6 +210,7 @@ Partial Class EtchASketchForm
         Me.ClearButton.TabIndex = 2
         Me.ClearButton.Text = "Clear"
         Me.ToolTip1.SetToolTip(Me.ClearButton, "Clears the picture box")
+        Me.ClearButton.UseMnemonic = False
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'ExitButton
@@ -224,9 +225,11 @@ Partial Class EtchASketchForm
         '
         'EtchASketchForm
         '
+        Me.AcceptButton = Me.DrawWaveformButton
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.ClearButton
         Me.ClientSize = New System.Drawing.Size(1019, 624)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.ClearButton)
